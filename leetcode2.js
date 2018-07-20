@@ -19,12 +19,14 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
+    // 处理空list情况
     if (!l1.val) {
         l1.val = 0
     }
     if (!l2.val) {
         l2.val = 0
     }
+    // list转数组
     var arr1 = []
     while(l1.next) {
         arr1.push(l1.val) 
@@ -37,6 +39,7 @@ var addTwoNumbers = function(l1, l2) {
         l2 = l2.next
     }
     arr2.push(l2.val)
+    // 对齐两个数组
     if (arr2.length > arr1.length) {
         var i = 0;
         while(i < arr2.length - arr1.length) {
@@ -48,6 +51,7 @@ var addTwoNumbers = function(l1, l2) {
             arr2.push(0)
         }   
     }
+    // 数组加法，如果采取直接数字加，精度会不够
     var carry = 0
     var resultArr = arr1.map(function (item, index) {
         var temp = (item + arr2[index] + carry) % 10
@@ -59,7 +63,7 @@ var addTwoNumbers = function(l1, l2) {
     }
     
     return resultArr
-    
+    // 生成结果链表
     var list = []
     resultArr.forEach(function(item, index, arr) {
         let tempList = new ListNode(parseInt(item))
